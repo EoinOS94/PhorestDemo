@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.phorestdemo.tests.ExampleTest" time="24.317" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\WorkSpace\PhorestDemo\target\test-classes;D:\WorkSpace\PhorestDemo\target\classes;C:\Users\eoino\.m2\repository\com\microsoft\playwright\playwright\1.41.2\playwright-1.41.2.jar;C:\Users\eoino\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\eoino\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eoino\.m2\repository\com\microsoft\playwright\driver\1.41.2\driver-1.41.2.jar;C:\Users\eoino\.m2\repository\com\microsoft\playwright\driver-bundle\1.41.2\driver-bundle-1.41.2.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\eoino\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\eoino\.m2\repository\com\mailslurp\mailslurp-client-java\17.0.0\mailslurp-client-java-17.0.0.jar;C:\Users\eoino\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\eoino\.m2\repository\com\squareup\okhttp3\okhttp\4.12.0\okhttp-4.12.0.jar;C:\Users\eoino\.m2\repository\com\squareup\okio\okio\3.6.0\okio-3.6.0.jar;C:\Users\eoino\.m2\repository\com\squareup\okio\okio-jvm\3.6.0\okio-jvm-3.6.0.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.9.10\kotlin-stdlib-common-1.9.10.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.8.21\kotlin-stdlib-jdk8-1.8.21.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.8.21\kotlin-stdlib-1.8.21.jar;C:\Users\eoino\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.8.21\kotlin-stdlib-jdk7-1.8.21.jar;C:\Users\eoino\.m2\repository\com\squareup\okhttp3\logging-interceptor\4.12.0\logging-interceptor-4.12.0.jar;C:\Users\eoino\.m2\repository\io\gsonfire\gson-fire\1.9.0\gson-fire-1.9.0.jar;C:\Users\eoino\.m2\repository\org\apache\commons\commons-lang3\3.17.0\commons-lang3-3.17.0.jar;C:\Users\eoino\.m2\repository\org\openapitools\jackson-databind-nullable\0.2.6\jackson-databind-nullable-0.2.6.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.0-rc2\jackson-databind-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.0-rc2\jackson-annotations-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.0-rc2\jackson-core-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\2.1.6\jakarta.ws.rs-api-2.1.6.jar;"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="user.country.format" value="150"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Amazon Corretto\jdk17.0.10_7\bin"/>
+    <property name="sun.java.command" value="C:\Users\eoino\AppData\Local\Temp\surefire16959839728189021212\surefirebooter-20260126235255982_3.jar C:\Users\eoino\AppData\Local\Temp\surefire16959839728189021212 2026-01-26T23-52-55_824-jvmRun1 surefire-20260126235255982_1tmp surefire_0-20260126235255982_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\WorkSpace\PhorestDemo\target\test-classes;D:\WorkSpace\PhorestDemo\target\classes;C:\Users\eoino\.m2\repository\com\microsoft\playwright\playwright\1.41.2\playwright-1.41.2.jar;C:\Users\eoino\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\eoino\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\eoino\.m2\repository\com\microsoft\playwright\driver\1.41.2\driver-1.41.2.jar;C:\Users\eoino\.m2\repository\com\microsoft\playwright\driver-bundle\1.41.2\driver-bundle-1.41.2.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\eoino\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\eoino\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\eoino\.m2\repository\com\mailslurp\mailslurp-client-java\17.0.0\mailslurp-client-java-17.0.0.jar;C:\Users\eoino\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\eoino\.m2\repository\com\squareup\okhttp3\okhttp\4.12.0\okhttp-4.12.0.jar;C:\Users\eoino\.m2\repository\com\squareup\okio\okio\3.6.0\okio-3.6.0.jar;C:\Users\eoino\.m2\repository\com\squareup\okio\okio-jvm\3.6.0\okio-jvm-3.6.0.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-common\1.9.10\kotlin-stdlib-common-1.9.10.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk8\1.8.21\kotlin-stdlib-jdk8-1.8.21.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.8.21\kotlin-stdlib-1.8.21.jar;C:\Users\eoino\.m2\repository\org\jetbrains\annotations\13.0\annotations-13.0.jar;C:\Users\eoino\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib-jdk7\1.8.21\kotlin-stdlib-jdk7-1.8.21.jar;C:\Users\eoino\.m2\repository\com\squareup\okhttp3\logging-interceptor\4.12.0\logging-interceptor-4.12.0.jar;C:\Users\eoino\.m2\repository\io\gsonfire\gson-fire\1.9.0\gson-fire-1.9.0.jar;C:\Users\eoino\.m2\repository\org\apache\commons\commons-lang3\3.17.0\commons-lang3-3.17.0.jar;C:\Users\eoino\.m2\repository\org\openapitools\jackson-databind-nullable\0.2.6\jackson-databind-nullable-0.2.6.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.14.0-rc2\jackson-databind-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.14.0-rc2\jackson-annotations-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.14.0-rc2\jackson-core-2.14.0-rc2.jar;C:\Users\eoino\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\2.1.6\jakarta.ws.rs-api-2.1.6.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\eoino"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-01-16"/>
+    <property name="java.home" value="C:\Program Files\Amazon Corretto\jdk17.0.10_7"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\WorkSpace\PhorestDemo"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\eoino\AppData\Local\Temp\surefire16959839728189021212\surefirebooter-20260126235255982_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.10+7-LTS"/>
+    <property name="user.name" value="eoino"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Corretto-17.0.10.7.1"/>
+    <property name="localRepository" value="C:\Users\eoino\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-17/issues/"/>
+    <property name="java.io.tmpdir" value="C:\Users\eoino\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.10"/>
+    <property name="user.dir" value="D:\WorkSpace\PhorestDemo"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Amazon Corretto\jdk17.0.10_7\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\eoino\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\eoino\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Amazon Corretto\jdk17.0.10_7\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;D:\Node\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Users\eoino\AppData\Local\Microsoft\WindowsApps;C:\apache-maven-3.9.6-bin\apache-maven-3.9.6\bin;C:\Users\eoino\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\eoino\AppData\Roaming\npm;C:\Program Files\Java\jdk-11;c:\Users\eoino\.vscode\extensions\vscjava.vscode-java-debug-0.58.5\bundled\scripts\noConfigScripts;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="17.0.10+7-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="sendToMeTest" classname="com.phorestdemo.tests.ExampleTest" time="16.894">
+    <error message="Error {&#10;  message=&apos;Timeout 10000ms exceeded.&#10;  name=&apos;TimeoutError&#10;  stack=&apos;TimeoutError: Timeout 10000ms exceeded.&#10;    at ProgressController.run (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\progress.js:87:26)&#10;    at Frame.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\frames.js:995:23)&#10;    at FrameDispatcher.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\frameDispatcher.js:158:30)&#10;    at FrameDispatcher._handleCommand (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:94:40)&#10;    at DispatcherConnection.dispatch (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:362:39)&#10;}&#10;Call log:&#10;- waiting for locator(&quot;button[data-actio=&apos;stripe-purchase#confirmPayment&apos;]&quot;)&#10;" type="com.microsoft.playwright.TimeoutError"><![CDATA[com.microsoft.playwright.TimeoutError: 
+Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\progress.js:87:26)
+    at Frame.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\frames.js:995:23)
+    at FrameDispatcher.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\frameDispatcher.js:158:30)
+    at FrameDispatcher._handleCommand (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("button[data-actio='stripe-purchase#confirmPayment']")
+
+	at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:120)
+	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:129)
+	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:106)
+	at com.microsoft.playwright.impl.FrameImpl.clickImpl(FrameImpl.java:252)
+	at com.microsoft.playwright.impl.FrameImpl.lambda$click$8(FrameImpl.java:243)
+	at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36)
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:89)
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35)
+	at com.microsoft.playwright.impl.FrameImpl.click(FrameImpl.java:243)
+	at com.microsoft.playwright.impl.LocatorImpl.click(LocatorImpl.java:140)
+	at com.microsoft.playwright.Locator.click(Locator.java:2387)
+	at com.phorestdemo.pages.SummaryPage.clickPayButton(SummaryPage.java:91)
+	at com.phorestdemo.tests.ExampleTest.sendToMeTest(ExampleTest.java:69)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 10000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 10000ms exceeded.
+    at ProgressController.run (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\progress.js:87:26)
+    at Frame.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\frames.js:995:23)
+    at FrameDispatcher.click (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\frameDispatcher.js:158:30)
+    at FrameDispatcher._handleCommand (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:94:40)
+    at DispatcherConnection.dispatch (C:\Users\eoino\AppData\Local\Temp\playwright-java-232011286220347590\package\lib\server\dispatchers\dispatcher.js:362:39)
+}
+Call log:
+- waiting for locator("button[data-actio='stripe-purchase#confirmPayment']")
+
+	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:254)
+	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:209)
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:118)
+	... 16 more
+]]></error>
+    <system-out><![CDATA[Temporary email: da38240a-4656-4b98-825e-afd6b1af4528@mailslurp.world
+]]></system-out>
+  </testcase>
+</testsuite>

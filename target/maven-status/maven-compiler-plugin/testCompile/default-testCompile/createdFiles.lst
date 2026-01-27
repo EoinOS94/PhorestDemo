@@ -1,0 +1,6 @@
+com\phorestdemo\tests\BaseTest.class
+com\phorestdemo\config\ConfigReader.class
+com\phorestdemo\pages\SummaryPage.class
+com\phorestdemo\pages\VoucherPage.class
+com\phorestdemo\tests\ExampleTest.class
+com\phorestdemo\pages\ReceiptPage.class
