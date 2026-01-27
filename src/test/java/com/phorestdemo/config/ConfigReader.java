@@ -33,7 +33,7 @@ public class ConfigReader {
 }
 
     public static String getBaseUrl() {
-        return properties.getProperty("baseUrl", "https://playwright.dev");
+        return properties.getProperty("baseUrl", "https://gift-cards.phorest.com/salons/demo#");
     }
 
     public static String getBrowserType() {

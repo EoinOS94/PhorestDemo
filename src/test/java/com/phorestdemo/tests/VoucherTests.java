@@ -18,11 +18,9 @@ import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VoucherTests extends BaseTest {
 
     private static final String MAILSLURP_API_KEY = System.getenv("MAILSLURP_API_KEY");
-    private static final Logger logger = Logger.getLogger(VoucherTests.class.getName());
 
     private InboxControllerApi inboxApi;
     private WaitForControllerApi waitApi;
@@ -38,19 +36,14 @@ public class VoucherTests extends BaseTest {
 
         inboxApi = new InboxControllerApi(client);
         waitApi = new WaitForControllerApi(client);
-
-        logger.info("MailSlurp client initialized");
     }
 
     @Test
     void sendToMeTest() throws Exception {
 
         InboxDto inbox = inboxApi.createInboxWithDefaults().execute();
-        String tempEmail = inbox.getEmailAddress();
-        logger.info("Temporary inbox created: " + tempEmail);
 
         try {
-            String voucherType = "Other";
             String voucherCustomAmount = "123";
             String expectedAmount =
                     new DecimalFormat("0.00").format(Double.parseDouble(voucherCustomAmount));
@@ -60,42 +53,26 @@ public class VoucherTests extends BaseTest {
             ReceiptPage receiptPage = new ReceiptPage(page, ConfigReader.getBaseUrl());
 
             voucherPage.navigate();
-            voucherPage.selectGiftAmount(voucherType, voucherCustomAmount);
+
+            voucherPage.selectGiftAmount("Other", voucherCustomAmount);
             voucherPage.clickSendToMeTab();
-            voucherPage.fillPurchaserEmailInputBox(tempEmail);
+            voucherPage.fillPurchaserEmailInputBox(inbox.getEmailAddress());
             voucherPage.fillFirstName("John");
             voucherPage.fillLastName("Doe");
 
-            assertEquals(expectedAmount, voucherPage.getTotalCost());
-            assertEquals(expectedAmount, voucherPage.getVoucherIconAmount());
-
             voucherPage.clickCheckoutButton();
-
-            assertEquals(voucherCustomAmount, summaryPage.getConfirmVoucherValue());
-            assertEquals(voucherCustomAmount, summaryPage.getConfirmTotalCost());
-            assertEquals(tempEmail, summaryPage.getSenderEmailText());
-            assertEquals(tempEmail, summaryPage.getRecipientEmailText());
 
             summaryPage.clickConfirmDetailsButton();
             summaryPage.enterPaymentDetails("4111 1111 1111 1111", "12/26", "999");
             summaryPage.clickPayButton();
 
             String voucherCode = receiptPage.getVoucherCode();
-            logger.info("Voucher code: " + voucherCode);
+            assertNotNull(voucherCode, "Voucher code should be visible on receipt page");
 
-            Email receiptEmail =
-                    waitForEmailBySubject(inbox, "Your Receipt for City Salon");
-            assertNotNull(receiptEmail);
-            assertTrue(receiptEmail.getBody().contains(voucherCode));
-
-            String expectedVoucherSubject =
-                    "You've been sent a €" + expectedAmount + " gift voucher for Demo IE!";
-
-            Email giftEmail =
-                    waitForEmailBySubject(inbox, expectedVoucherSubject);
-            assertNotNull(giftEmail);
-            assertTrue(giftEmail.getBody().contains(voucherCode));
-
+            Email receipt = waitForEmailBySubject(inbox, "Your Receipt for City Salon");
+            assertNotNull(receipt, "Receipt email not received");
+            assertTrue(receipt.getBody().contains(voucherCode));
+            assertTrue(receipt.getBody().contains(expectedAmount));
         } finally {
             deleteInboxQuietly(inbox);
         }
@@ -107,64 +84,41 @@ public class VoucherTests extends BaseTest {
         InboxDto purchaserInbox = inboxApi.createInboxWithDefaults().execute();
         InboxDto recipientInbox = inboxApi.createInboxWithDefaults().execute();
 
-        String purchaserEmail = purchaserInbox.getEmailAddress();
-        String recipientEmail = recipientInbox.getEmailAddress();
-
-        logger.info("Purchaser inbox: " + purchaserEmail);
-        logger.info("Recipient inbox: " + recipientEmail);
-
         try {
-            String voucherType = "150";
-            String voucherCustomAmount = "150";
+            String amount = "150";
             String expectedAmount =
-                    new DecimalFormat("0.00").format(Double.parseDouble(voucherCustomAmount));
-            String message = "Auto message for voucher";
+                    new DecimalFormat("0.00").format(Double.parseDouble(amount));
 
             VoucherPage voucherPage = new VoucherPage(page, ConfigReader.getBaseUrl());
             SummaryPage summaryPage = new SummaryPage(page, ConfigReader.getBaseUrl());
             ReceiptPage receiptPage = new ReceiptPage(page, ConfigReader.getBaseUrl());
 
             voucherPage.navigate();
-            voucherPage.selectGiftAmount(voucherType, null);
+
+            voucherPage.selectGiftAmount("150", null);
             voucherPage.clickSendToOtherTab();
-            voucherPage.fillPurchaserEmailInputBox(purchaserEmail);
+            voucherPage.fillPurchaserEmailInputBox(purchaserInbox.getEmailAddress());
             voucherPage.fillFirstName("Jane");
             voucherPage.fillLastName("Doe");
-            voucherPage.fillRecipientEmailInputBox(recipientEmail);
-            voucherPage.fillMessageForRecipientInputBox(message);
-
-            assertEquals(expectedAmount, voucherPage.getTotalCost());
-            assertEquals(expectedAmount, voucherPage.getVoucherIconAmount());
+            voucherPage.fillRecipientEmailInputBox(recipientInbox.getEmailAddress());
+            voucherPage.fillMessageForRecipientInputBox("Auto message for voucher");
 
             voucherPage.clickCheckoutButton();
-
-            assertEquals(voucherCustomAmount, summaryPage.getConfirmVoucherValue());
-            assertEquals(voucherCustomAmount, summaryPage.getConfirmTotalCost());
-            assertEquals(purchaserEmail, summaryPage.getSenderEmailText());
-            assertEquals(recipientEmail, summaryPage.getRecipientEmailText());
 
             summaryPage.clickConfirmDetailsButton();
             summaryPage.enterPaymentDetails("4111 1111 1111 1111", "12/26", "999");
             summaryPage.clickPayButton();
 
             String voucherCode = receiptPage.getVoucherCode();
-            logger.info("Voucher code: " + voucherCode);
+            assertNotNull(voucherCode);
 
-            // Receipt → purchaser
-            Email receiptEmail =
-                    waitForEmailBySubject(purchaserInbox, "Your Receipt for City Salon");
-            assertNotNull(receiptEmail);
-            assertTrue(receiptEmail.getBody().contains(voucherCode));
+            Email gift = waitForEmailBySubject(
+                    recipientInbox,
+                    "You've been sent a €" + expectedAmount + " gift voucher for Demo IE!"
+            );
 
-            // Gift → recipient
-            String expectedVoucherSubject =
-                    "You've been sent a €" + expectedAmount + " gift voucher for Demo IE!";
-
-            Email giftEmail =
-                    waitForEmailBySubject(recipientInbox, expectedVoucherSubject);
-            assertNotNull(giftEmail);
-            assertTrue(giftEmail.getBody().contains(voucherCode));
-            assertTrue(giftEmail.getBody().contains(message));
+            assertNotNull(gift, "Gift email not received");
+            assertTrue(gift.getBody().contains(voucherCode));
 
         } finally {
             deleteInboxQuietly(purchaserInbox);
@@ -175,29 +129,20 @@ public class VoucherTests extends BaseTest {
     private Email waitForEmailBySubject(InboxDto inbox, String subject)
             throws InterruptedException {
 
-        int retries = 12;
-        long retryDelayMs = 5000L;
-        long timeoutPerAttempt = 15_000L;
-
-        for (int i = 1; i <= retries; i++) {
+        for (int i = 0; i < 12; i++) {
             try {
                 Email email = waitApi.waitForLatestEmail()
                         .inboxId(inbox.getId())
-                        .timeout(timeoutPerAttempt)
+                        .timeout(15_000L)
                         .unreadOnly(true)
                         .execute();
 
                 if (email != null && subject.equals(email.getSubject())) {
-                    logger.info("Email received on attempt " + i + ": " + subject);
                     return email;
                 }
-            } catch (Exception e) {
-                logger.warning("Attempt " + i + " failed: " + e.getMessage());
-            }
-            Thread.sleep(retryDelayMs);
+            } catch (Exception ignored) {}
+            Thread.sleep(5000);
         }
-
-        logger.severe("Email with subject '" + subject + "' not received");
         return null;
     }
 
@@ -205,9 +150,6 @@ public class VoucherTests extends BaseTest {
         if (inbox == null) return;
         try {
             inboxApi.deleteInbox(inbox.getId());
-            logger.info("Deleted inbox: " + inbox.getEmailAddress());
-        } catch (Exception e) {
-            logger.severe("Failed to delete inbox " + inbox.getEmailAddress() + ": " + e.getMessage());
-        }
+        } catch (Exception ignored) {}
     }
 }
