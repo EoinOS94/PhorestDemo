@@ -41,16 +41,12 @@ public class VoucherPage {
 
     public void navigate() {
         page.navigate("https://gift-cards.phorest.com/salons/demo#");
-
-        // Wait for JS + network to settle
         page.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
-        // Wait for voucher radios to exist & be visible
-        page.waitForSelector(
-                "input[type='radio']",
-                new Page.WaitForSelectorOptions()
-                        .setState(WaitForSelectorState.VISIBLE)
-                        .setTimeout(30_000) // CI-safe
+        // Wait until at least one radio is visible
+        page.waitForSelector("input[type='radio']", new Page.WaitForSelectorOptions()
+                .setState(WaitForSelectorState.VISIBLE)
+                .setTimeout(30_000)
         );
     }
 
@@ -96,13 +92,14 @@ public class VoucherPage {
      * Uses a special selector for "Other".
      */
     private Locator getGiftVoucherRadioButton(String amount) {
-    if (amount.equalsIgnoreCase("Other")) {
-        // Use the id or data-target of the Other radio
-        return page.locator("input#optionOther");
-    } else {
-        // Use data-voucher-value for preset amounts
-        String formattedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
-        return page.locator("input[type='radio'][data-voucher-value='" + formattedAmount + "']");
+        if (amount.equalsIgnoreCase("Other")) {
+            // Use the actual HTML for the "Other" radio
+            return page.locator("input#optionOther");
+            // OR: return page.locator("input[data-target='amount.otherOptionButton']");
+        } else {
+            // Preset amounts use data-voucher-value
+            String formattedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
+            return page.locator("input[type='radio'][data-voucher-value='" + formattedAmount + "']");
         }
     }
 
