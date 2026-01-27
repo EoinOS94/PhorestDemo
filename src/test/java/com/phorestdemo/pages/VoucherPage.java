@@ -3,6 +3,7 @@ package com.phorestdemo.pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.text.DecimalFormat;
@@ -37,15 +38,20 @@ public class VoucherPage {
     public VoucherPage(Page page, String url) {
         this.page = page;
     }
-
+    
     public void navigate() {
         page.navigate("https://gift-cards.phorest.com/salons/demo#");
 
-        // 🔑 ensure page is actually ready
-        page.waitForSelector(
-                "input[type='radio']",
-                new Page.WaitForSelectorOptions()
-                        .setState(WaitForSelectorState.VISIBLE)
+        // Wait for JS + network to settle
+        page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+
+        // Wait for voucher radios to exist & be visible
+        page.getByRole(
+            AriaRole.RADIO,
+            new Page.GetByRoleOptions().setName("Other")
+        ).waitFor(new Locator.WaitForOptions()
+                .setState(WaitForSelectorState.VISIBLE)
+                .setTimeout(20_000)
         );
     }
 
