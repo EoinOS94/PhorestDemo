@@ -38,7 +38,7 @@ public class VoucherPage {
     public VoucherPage(Page page, String url) {
         this.page = page;
     }
-    
+
     public void navigate() {
         page.navigate("https://gift-cards.phorest.com/salons/demo#");
 
@@ -46,12 +46,11 @@ public class VoucherPage {
         page.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
         // Wait for voucher radios to exist & be visible
-        page.getByRole(
-            AriaRole.RADIO,
-            new Page.GetByRoleOptions().setName("Other")
-        ).waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(20_000)
+        page.waitForSelector(
+                "input[type='radio']",
+                new Page.WaitForSelectorOptions()
+                        .setState(WaitForSelectorState.VISIBLE)
+                        .setTimeout(30_000) // CI-safe
         );
     }
 
@@ -91,31 +90,41 @@ public class VoucherPage {
         return page.locator(VOUCHER_ICON_AMOUNT);
     }
 
+    /**
+     * Returns the Locator for a gift voucher radio button.
+     * Uses data-voucher-value attribute for preset amounts.
+     * Uses a special selector for "Other".
+     */
     private Locator getGiftVoucherRadioButton(String amount) {
-        String radioName = amount.equalsIgnoreCase("Other")
-                ? "Other"
-                : "€" + amount;
-
-        return page.getByRole(
-                AriaRole.RADIO,
-                new Page.GetByRoleOptions().setName(radioName)
-        );
+        if (amount.equalsIgnoreCase("Other")) {
+            // Use attribute or ID to identify the "Other" radio
+            return page.locator("input[type='radio'][data-voucher-value='other']");
+        } else {
+            // Use data-voucher-value for preset amounts
+            String formattedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
+            return page.locator("input[type='radio'][data-voucher-value='" + formattedAmount + "']");
+        }
     }
 
+    /**
+     * Selects a gift voucher amount, either preset or custom "Other".
+     */
     public void selectGiftAmount(String amount, String customAmountIfOther) {
-
-        // Wait until radios are rendered (CI safety)
+        // Wait until all radios are rendered (CI safety)
         page.waitForSelector(
                 "input[type='radio']",
                 new Page.WaitForSelectorOptions()
                         .setState(WaitForSelectorState.VISIBLE)
+                        .setTimeout(30_000)
         );
 
         Locator radio = getGiftVoucherRadioButton(amount);
 
-        // Wait for this specific radio
+        // Wait for this specific radio to be visible
         radio.waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE));
+                .setState(WaitForSelectorState.VISIBLE)
+                .setTimeout(30_000)
+        );
 
         radio.check();
 
@@ -131,9 +140,11 @@ public class VoucherPage {
                 );
             }
 
-            // Wait for input to appear after selecting "Other"
+            // Wait for the "Other" input box
             getOtherInputBox().waitFor(new Locator.WaitForOptions()
-                    .setState(WaitForSelectorState.VISIBLE));
+                    .setState(WaitForSelectorState.VISIBLE)
+                    .setTimeout(30_000)
+            );
 
             getOtherInputBox().fill(customAmountIfOther);
         }
