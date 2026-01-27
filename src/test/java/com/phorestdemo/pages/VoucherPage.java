@@ -96,13 +96,13 @@ public class VoucherPage {
      * Uses a special selector for "Other".
      */
     private Locator getGiftVoucherRadioButton(String amount) {
-        if (amount.equalsIgnoreCase("Other")) {
-            // Use attribute or ID to identify the "Other" radio
-            return page.locator("input[type='radio'][data-voucher-value='other']");
-        } else {
-            // Use data-voucher-value for preset amounts
-            String formattedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
-            return page.locator("input[type='radio'][data-voucher-value='" + formattedAmount + "']");
+    if (amount.equalsIgnoreCase("Other")) {
+        // Use the id or data-target of the Other radio
+        return page.locator("input#optionOther");
+    } else {
+        // Use data-voucher-value for preset amounts
+        String formattedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
+        return page.locator("input[type='radio'][data-voucher-value='" + formattedAmount + "']");
         }
     }
 
