@@ -16,6 +16,7 @@ public class SummaryPage {
     private static final String CONFIRM_DETAILS_BUTTON = "button[data-action='confirm#confirmAction']";
     private static final String STRIPE_CARD_IFRAME = "iframe[src*='elements-inner-card']";
     private static final String PAY_BUTTON = "button[data-action='stripe-purchase#confirmPayment']";
+    private static final String EDIT_BUTTON = "button[data-action='click->confirm#editAction']";
 
     public SummaryPage(Page page, String url) {
         this.page = page;
@@ -55,8 +56,16 @@ public class SummaryPage {
         return page.locator(PAY_BUTTON);
     }
 
+    public Locator getEditButton() {
+        return page.locator(EDIT_BUTTON);
+    }
+
     public void clickConfirmDetailsButton() {
         getConfirmDetailsButton().click();
+    }
+
+    public void clickEditButton() {
+        getEditButton().click();
     }
 
     public void enterCardNumber(String cardNumber) {

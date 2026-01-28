@@ -51,7 +51,14 @@ public abstract class BaseTest {
 
     @AfterEach
     void teardownTest() {
-        if (context != null)
+        if (context != null) {
             context.close();
+        }
+        if (browser != null) {
+            browser.close();
+        }
+        if (playwright != null) {
+            playwright.close();
+        }
     }
 }

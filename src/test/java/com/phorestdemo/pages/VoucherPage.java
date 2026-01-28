@@ -164,18 +164,38 @@ public class VoucherPage {
     public String getTotalCost() {
         String value = page.locator(TOTAL_COST_SPAN).nth(0).textContent().trim();
         value = value.replaceAll("[^0-9.]", "");
-        return new DecimalFormat("0.00")
-                .format(Double.parseDouble(value));
+        int intValue = (int) Double.parseDouble(value); 
+        return String.valueOf(intValue);
     }
 
     public String getVoucherIconAmount() {
         String value = getVoucherAmountText().textContent().trim();
         value = value.replaceAll("[^0-9.]", "");
-        return new DecimalFormat("0.00")
-                .format(Double.parseDouble(value));
+        int intValue = (int) Double.parseDouble(value); 
+        return String.valueOf(intValue);
     }
 
     public void clickCheckoutButton() {
         getCheckoutButton().nth(0).click();
+    }
+
+    public String getRecipientEmailText() {
+        return page.locator(RECIPIENT_EMAIL_INPUT_BOX).inputValue().trim();
+    }
+
+    public String getSenderEmailText() {
+        return page.locator(PURCHASER_EMAIL_INPUT_BOX).inputValue().trim();
+    }
+
+    public String getFirstNameInputText() {
+        return page.locator(FIRST_NAME_INPUT_BOX).inputValue().trim();
+    }
+
+    public String getLastNameInputText() {
+        return page.locator(LAST_NAME_INPUT_BOX).inputValue().trim();
+    }
+
+    public String getMessageForRecipientText() {
+        return page.locator(MESSAGE_FOR_RECIPIENT_INPUT_BOX).inputValue().trim();
     }
 }

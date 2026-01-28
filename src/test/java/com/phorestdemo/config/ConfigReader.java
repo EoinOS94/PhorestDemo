@@ -28,7 +28,7 @@ public class ConfigReader {
             return true;
         }
         return Boolean.parseBoolean(
-                // Set this to true for headful mode 
+                // Set this to true for headful mode
                 properties.getProperty("driverHeadless", "true"));
     }
 
