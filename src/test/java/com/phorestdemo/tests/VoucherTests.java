@@ -36,11 +36,13 @@ public class VoucherTests extends BaseTest {
 
         inboxApi = new InboxControllerApi(client);
         waitApi = new WaitForControllerApi(client);
-    }
+        }
 
     @Test
     void sendToMeTest() throws Exception {
-
+        System.out.println("BASE URL = " + ConfigReader.getBaseUrl());
+        page.navigate(ConfigReader.getBaseUrl());
+        System.out.println("PAGE CONTENT = " + page.content());
         InboxDto inbox = inboxApi.createInboxWithDefaults().execute();
 
         try {
@@ -51,9 +53,8 @@ public class VoucherTests extends BaseTest {
             VoucherPage voucherPage = new VoucherPage(page, ConfigReader.getBaseUrl());
             SummaryPage summaryPage = new SummaryPage(page, ConfigReader.getBaseUrl());
             ReceiptPage receiptPage = new ReceiptPage(page, ConfigReader.getBaseUrl());
-
-            voucherPage.navigate();
-
+            page.navigate(ConfigReader.getBaseUrl());
+           //voucherPage.navigate();
             voucherPage.selectGiftAmount("Other", voucherCustomAmount);
             voucherPage.clickSendToMeTab();
             voucherPage.fillPurchaserEmailInputBox(inbox.getEmailAddress());
@@ -80,7 +81,10 @@ public class VoucherTests extends BaseTest {
 
     @Test
     void sendToOtherTest() throws Exception {
-
+        System.out.println("BASE URL = " + ConfigReader.getBaseUrl()); 
+        page.navigate(ConfigReader.getBaseUrl()); 
+        System.out.println("PAGE CONTENT = " + page.content());
+        
         InboxDto purchaserInbox = inboxApi.createInboxWithDefaults().execute();
         InboxDto recipientInbox = inboxApi.createInboxWithDefaults().execute();
 
