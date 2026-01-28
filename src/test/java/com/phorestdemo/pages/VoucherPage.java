@@ -14,26 +14,16 @@ public class VoucherPage {
 
     private final Page page;
 
-    private static final String OTHER_VOUCHER_SELECTOR_INPUT_BOX =
-            "input[data-target='amount.otherInput']";
-    private static final String VOUCHER_ICON_AMOUNT =
-            "text#voucher-value-text";
-    private static final String TOTAL_COST_SPAN =
-            "span[data-target='checkout.totalCost']";
-    private static final String CHECK_OUT_BUTTON =
-            "button[data-target='checkout.checkoutButton']";
-    private static final String SEND_TO_ME_TAB =
-            "a[data-action='tabs#showSendToMe'][data-target='tabs.sendToMyselfTab']";
-    private static final String PURCHASER_EMAIL_INPUT_BOX =
-            "input[data-target='email.purchaserEmailInput']";
-    private static final String RECIPIENT_EMAIL_INPUT_BOX =
-            "input[data-target='email.recipientEmailInput']";
-    private static final String MESSAGE_FOR_RECIPIENT_INPUT_BOX =
-            "textarea[data-target='email.recipientMessageInput']";
-    private static final String FIRST_NAME_INPUT_BOX =
-            "input[data-target='name.purchaserFirstNameInput']";
-    private static final String LAST_NAME_INPUT_BOX =
-            "input[data-target='name.purchaserLastNameInput']";
+    private static final String OTHER_VOUCHER_SELECTOR_INPUT_BOX = "input[data-target='amount.otherInput']";
+    private static final String VOUCHER_ICON_AMOUNT = "text#voucher-value-text";
+    private static final String TOTAL_COST_SPAN = "span[data-target='checkout.totalCost']";
+    private static final String CHECK_OUT_BUTTON = "button[data-target='checkout.checkoutButton']";
+    private static final String SEND_TO_ME_TAB = "a[data-action='tabs#showSendToMe'][data-target='tabs.sendToMyselfTab']";
+    private static final String PURCHASER_EMAIL_INPUT_BOX = "input[data-target='email.purchaserEmailInput']";
+    private static final String RECIPIENT_EMAIL_INPUT_BOX = "input[data-target='email.recipientEmailInput']";
+    private static final String MESSAGE_FOR_RECIPIENT_INPUT_BOX = "textarea[data-target='email.recipientMessageInput']";
+    private static final String FIRST_NAME_INPUT_BOX = "input[data-target='name.purchaserFirstNameInput']";
+    private static final String LAST_NAME_INPUT_BOX = "input[data-target='name.purchaserLastNameInput']";
 
     public VoucherPage(Page page, String url) {
         this.page = page;
@@ -46,8 +36,7 @@ public class VoucherPage {
         // Wait until at least one radio is visible
         page.waitForSelector("input[type='radio']", new Page.WaitForSelectorOptions()
                 .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(30_000)
-        );
+                .setTimeout(30_000));
     }
 
     private Locator getCheckoutButton() {
@@ -112,36 +101,31 @@ public class VoucherPage {
                 "input[type='radio']",
                 new Page.WaitForSelectorOptions()
                         .setState(WaitForSelectorState.VISIBLE)
-                        .setTimeout(30_000)
-        );
+                        .setTimeout(30_000));
 
         Locator radio = getGiftVoucherRadioButton(amount);
 
         // Wait for this specific radio to be visible
         radio.waitFor(new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(30_000)
-        );
+                .setTimeout(30_000));
 
         radio.check();
 
         assertTrue(
                 radio.isChecked(),
-                "Expected gift voucher amount " + amount + " to be selected."
-        );
+                "Expected gift voucher amount " + amount + " to be selected.");
 
         if (amount.equalsIgnoreCase("Other")) {
             if (customAmountIfOther == null) {
                 throw new IllegalArgumentException(
-                        "Custom amount must be provided when selecting 'Other'."
-                );
+                        "Custom amount must be provided when selecting 'Other'.");
             }
 
             // Wait for the "Other" input box
             getOtherInputBox().waitFor(new Locator.WaitForOptions()
                     .setState(WaitForSelectorState.VISIBLE)
-                    .setTimeout(30_000)
-            );
+                    .setTimeout(30_000));
 
             getOtherInputBox().fill(customAmountIfOther);
         }
@@ -154,8 +138,7 @@ public class VoucherPage {
     public void clickSendToOtherTab() {
         page.getByRole(
                 AriaRole.LINK,
-                new Page.GetByRoleOptions().setName("Send to someone else")
-        ).click();
+                new Page.GetByRoleOptions().setName("Send to someone else")).click();
     }
 
     public void fillPurchaserEmailInputBox(String purchaserEmail) {

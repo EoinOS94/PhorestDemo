@@ -30,15 +30,16 @@ public abstract class BaseTest {
         }
 
         browser = browserType.launch(
-            new BrowserType.LaunchOptions()
-                .setHeadless(ConfigReader.isHeadless())
-        );
+                new BrowserType.LaunchOptions()
+                        .setHeadless(ConfigReader.isHeadless()));
     }
 
     @AfterAll
     static void globalTeardown() {
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+        if (browser != null)
+            browser.close();
+        if (playwright != null)
+            playwright.close();
     }
 
     @BeforeEach
@@ -50,6 +51,7 @@ public abstract class BaseTest {
 
     @AfterEach
     void teardownTest() {
-        if (context != null) context.close();
+        if (context != null)
+            context.close();
     }
 }

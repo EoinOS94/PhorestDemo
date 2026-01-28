@@ -23,14 +23,14 @@ public class ConfigReader {
     }
 
     public static boolean isHeadless() {
-    // Force headless in CI (GitHub Actions sets CI=true)
-    if (System.getenv("CI") != null) {
-        return true;
+        // Force headless in CI (GitHub Actions sets CI=true)
+        if (System.getenv("CI") != null) {
+            return true;
+        }
+        return Boolean.parseBoolean(
+                // Set this to true for headful mode 
+                properties.getProperty("driverHeadless", "true"));
     }
-    return Boolean.parseBoolean(
-            properties.getProperty("driverHeadless", "true")
-    );
-}
 
     public static String getBaseUrl() {
         return properties.getProperty("baseUrl", "https://gift-cards.phorest.com/salons/demo#");

@@ -5,17 +5,13 @@ import com.phorestdemo.pages.VoucherPage;
 import com.phorestdemo.pages.ReceiptPage;
 import com.phorestdemo.pages.SummaryPage;
 import org.junit.jupiter.api.*;
-
 import com.mailslurp.clients.ApiClient;
 import com.mailslurp.clients.Configuration;
 import com.mailslurp.apis.InboxControllerApi;
 import com.mailslurp.apis.WaitForControllerApi;
 import com.mailslurp.models.InboxDto;
 import com.mailslurp.models.Email;
-
 import java.text.DecimalFormat;
-import java.util.logging.Logger;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VoucherTests extends BaseTest {
@@ -36,25 +32,27 @@ public class VoucherTests extends BaseTest {
 
         inboxApi = new InboxControllerApi(client);
         waitApi = new WaitForControllerApi(client);
-        }
+    }
 
     @Test
+    @Tag("UITests")
     void sendToMeTest() throws Exception {
-        System.out.println("BASE URL = " + ConfigReader.getBaseUrl());
-        page.navigate(ConfigReader.getBaseUrl());
-        System.out.println("PAGE CONTENT = " + page.content());
+        // For debugging For debugging if access to the page on the CI
+        // System.out.println("BASE URL = " + ConfigReader.getBaseUrl());
+        // page.navigate(ConfigReader.getBaseUrl());
+        // System.out.println("PAGE CONTENT = " + page.content());
+        
         InboxDto inbox = inboxApi.createInboxWithDefaults().execute();
 
         try {
             String voucherCustomAmount = "123";
-            String expectedAmount =
-                    new DecimalFormat("0.00").format(Double.parseDouble(voucherCustomAmount));
+            String expectedAmount = new DecimalFormat("0.00").format(Double.parseDouble(voucherCustomAmount));
 
             VoucherPage voucherPage = new VoucherPage(page, ConfigReader.getBaseUrl());
             SummaryPage summaryPage = new SummaryPage(page, ConfigReader.getBaseUrl());
             ReceiptPage receiptPage = new ReceiptPage(page, ConfigReader.getBaseUrl());
             page.navigate(ConfigReader.getBaseUrl());
-           //voucherPage.navigate();
+            // voucherPage.navigate();
             voucherPage.selectGiftAmount("Other", voucherCustomAmount);
             voucherPage.clickSendToMeTab();
             voucherPage.fillPurchaserEmailInputBox(inbox.getEmailAddress());
@@ -81,17 +79,17 @@ public class VoucherTests extends BaseTest {
 
     @Test
     void sendToOtherTest() throws Exception {
-        System.out.println("BASE URL = " + ConfigReader.getBaseUrl()); 
-        page.navigate(ConfigReader.getBaseUrl()); 
-        System.out.println("PAGE CONTENT = " + page.content());
-        
+        // For debugging if access to the page on the CI
+        // System.out.println("BASE URL = " + ConfigReader.getBaseUrl());
+        // page.navigate(ConfigReader.getBaseUrl());
+        // System.out.println("PAGE CONTENT = " + page.content());
+
         InboxDto purchaserInbox = inboxApi.createInboxWithDefaults().execute();
         InboxDto recipientInbox = inboxApi.createInboxWithDefaults().execute();
 
         try {
             String amount = "150";
-            String expectedAmount =
-                    new DecimalFormat("0.00").format(Double.parseDouble(amount));
+            String expectedAmount = new DecimalFormat("0.00").format(Double.parseDouble(amount));
 
             VoucherPage voucherPage = new VoucherPage(page, ConfigReader.getBaseUrl());
             SummaryPage summaryPage = new SummaryPage(page, ConfigReader.getBaseUrl());
@@ -118,8 +116,7 @@ public class VoucherTests extends BaseTest {
 
             Email gift = waitForEmailBySubject(
                     recipientInbox,
-                    "You've been sent a €" + expectedAmount + " gift voucher for Demo IE!"
-            );
+                    "You've been sent a €" + expectedAmount + " gift voucher for Demo IE!");
 
             assertNotNull(gift, "Gift email not received");
             assertTrue(gift.getBody().contains(voucherCode));
@@ -144,16 +141,19 @@ public class VoucherTests extends BaseTest {
                 if (email != null && subject.equals(email.getSubject())) {
                     return email;
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
             Thread.sleep(5000);
         }
         return null;
     }
 
     private void deleteInboxQuietly(InboxDto inbox) {
-        if (inbox == null) return;
+        if (inbox == null)
+            return;
         try {
             inboxApi.deleteInbox(inbox.getId());
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 }

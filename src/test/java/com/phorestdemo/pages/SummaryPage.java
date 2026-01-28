@@ -62,29 +62,29 @@ public class SummaryPage {
     public void enterCardNumber(String cardNumber) {
         getCardFrame().getByRole(AriaRole.TEXTBOX,
                 new FrameLocator.GetByRoleOptions()
-                        .setName("Credit or debit card number")
-        ).fill(cardNumber);
+                        .setName("Credit or debit card number"))
+                .fill(cardNumber);
     }
 
     public void enterExpiry(String expiry) {
         getCardFrame().getByRole(AriaRole.TEXTBOX,
                 new FrameLocator.GetByRoleOptions()
-                        .setName("Credit or debit card expiration date")
-        ).fill(expiry);
+                        .setName("Credit or debit card expiration date"))
+                .fill(expiry);
     }
 
     public void enterCVC(String cvc) {
         getCardFrame().getByRole(AriaRole.TEXTBOX,
                 new FrameLocator.GetByRoleOptions()
-                        .setName("Credit or debit card CVC/CVV")
-        ).fill(cvc);
+                        .setName("Credit or debit card CVC/CVV"))
+                .fill(cvc);
     }
 
     // Convenience method: fill all payment fields in correct order
     public void enterPaymentDetails(String cardNumber, String expiry, String cvc) {
         enterCardNumber(cardNumber); // MUST be first
-        enterExpiry(expiry);          // now iframe exists
-        enterCVC(cvc);                // now iframe exists
+        enterExpiry(expiry); // now iframe exists
+        enterCVC(cvc); // now iframe exists
     }
 
     public void clickPayButton() {
