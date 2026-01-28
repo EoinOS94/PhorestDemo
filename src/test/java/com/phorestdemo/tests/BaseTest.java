@@ -31,15 +31,8 @@ public abstract class BaseTest {
 
         browser = browserType.launch(
                 new BrowserType.LaunchOptions()
-                        .setHeadless(ConfigReader.isHeadless()));
-    }
-
-    @AfterAll
-    static void globalTeardown() {
-        if (browser != null)
-            browser.close();
-        if (playwright != null)
-            playwright.close();
+                        .setHeadless(ConfigReader.isHeadless())
+        );
     }
 
     @BeforeEach
@@ -54,11 +47,24 @@ public abstract class BaseTest {
         if (context != null) {
             context.close();
         }
-        if (browser != null) {
-            browser.close();
+    }
+
+    @AfterAll
+    static void globalTeardown() {
+        try {
+            if (browser != null) {
+                browser.close();
+            }
+        } catch (Exception e) {
+            System.err.println("Browser already closed");
         }
-        if (playwright != null) {
-            playwright.close();
+
+        try {
+            if (playwright != null) {
+                playwright.close();
+            }
+        } catch (Exception e) {
+            System.err.println("Playwright already closed");
         }
     }
 }
