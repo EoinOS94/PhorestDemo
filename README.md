@@ -37,3 +37,10 @@ VoucherTests.java — main test class for the gift card flow
 BaseTest.java — handles Playwright setup and teardown
 InboxApi.java — wrapper for MailSlurp inbox creation and email polling
 Vouchage, Summary, Receipt pages to handle page locators & actions
+
+> ⚠️ **Note on CI Execution**
+
+Due to access restrictions on the production Phorest gift card site, the UI tests may fail when run in CI environments such as GitHub Actions. The site returns a `403 Forbidden` response when accessed from GitHub-hosted runners. This does not affect local execution — all tests pass consistently when run locally.
+
+If needed, tests can be configured to run on a self-hosted runner or against a staging environment with proper access.
+
